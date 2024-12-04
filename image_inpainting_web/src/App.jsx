@@ -15,13 +15,22 @@ function App() {
   return (
     <>
       <div className='min-h-screen w-full px-2 flex flex-col justify-center items-center bg-[#111827]'>
-        <h1 className='text-4xl font-bold text-white'>Image Inpainting</h1>
+        <h1 className='text-4xl font-bold text-white'>Residual Dense Image Inpainting CNN</h1>
         <div className='min-h-[90vh] flex flex-col justify-center items-center w-full max-w-[80%] '>
           {!image ? (
             <UploadImage onImageUpload={handleImageUpload} />
           ) : (
             <div className='flex gap-5 w-full h-full'>
-              <Canvas image={image} handleRemoveImage={() => { setImage(null) }} handleOutputImage={(result) => {setOutputImage(result)}}/>
+              <Canvas 
+                image={image} 
+                handleRemoveImage={() => { 
+                  setImage(null);
+                  setOutputImage(null);
+                }} 
+                handleOutputImage={(result) => {
+                  setOutputImage(result);  // Guardamos solo el base64
+                }}
+              />
               <Results outputImageBase64={outputImage}></Results>
             </div>
           )}
