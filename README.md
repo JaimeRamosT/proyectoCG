@@ -1,4 +1,4 @@
-# Proyecto - Mejora de calidad de imágenes
+# Residual Dense Image Inpainting CNN
 
 ## Integrantes
 
@@ -8,7 +8,7 @@
 
 ## Descripción del proyecto
 
-Este proyecto consiste en la aplicación de modelos de aprendizaje automático que permitan mejorar la calidad de imágenes, con un enfoque en el procesamiento de imágenes basado en redes neuronales.
+Este proyecto consiste en la aplicación de modelos de aprendizaje automático para la tarea de Image Inpainting, utilizando una CNN que incorpora Residual Dense Blocks, Global Feature Fusion y Partial Convolutions.
 
 ## Instrucciones para ejecución del proyecto
 
@@ -67,7 +67,7 @@ Para poder correr el preprocesamiento del dataset y el entrenamiento del modelo,
 
 3. Construye la imagen Docker:
    ```sh
-   docker build -t image_inpainting .
+   docker build -t image_inpainting . 
    ```
 
 4. Ejecuta un contenedor interactivo:
