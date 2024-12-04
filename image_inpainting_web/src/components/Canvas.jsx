@@ -146,7 +146,7 @@ const handleSaveMask = () => {
       formData.append("original_image", resizedBlob, "original_image.jpg");
       formData.append("mask", maskBlob, "mask.png");
 
-      const response = await fetch("http://127.0.0.1:8000/upload/", {
+      const response = await fetch("http://localhost:8000/upload/", {
         method: "POST",
         body: formData,
       });
