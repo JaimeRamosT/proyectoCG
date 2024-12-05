@@ -19,7 +19,7 @@ def conv_output_length(input_length, filter_size,
     return (output_length + stride - 1) // stride
 
 
-class PConv2D(Conv2D):
+class KerasNoNANUtil(Conv2D):
     def __init__(self, *args, n_channels=3, mono=False, **kwargs):
         super().__init__(*args, **kwargs)
         self.input_spec = [InputSpec(ndim=4), InputSpec(ndim=4)]
@@ -62,7 +62,7 @@ class PConv2D(Conv2D):
 
     def call(self, inputs, mask=None):
         if type(inputs) is not list or len(inputs) != 2:
-            raise Exception('PartialConvolution2D must be called on a list of two tensors [img, mask]. Instead got: ' + str(inputs))
+            raise Exception('Conv2D must be called on a list of two tensors [img, mask]. Instead got: ' + str(inputs))
 
         images = K.spatial_2d_padding(inputs[0], self.pconv_padding, self.data_format)
         masks = K.spatial_2d_padding(inputs[1], self.pconv_padding, self.data_format)

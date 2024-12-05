@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-from src.inpainting import PConv2D, dice_coef
+from src.inpainting import KerasNoNANUtil, dice_coef
 from keras.models import load_model
 
 SIZE = 64
@@ -26,7 +26,7 @@ def inpaint_image(original_image, mask_cv2):
     
     # Load model
     model_path = 'image_inpainting_model.h5'
-    custom_objects = {'PConv2D': PConv2D, 'dice_coef': dice_coef}
+    custom_objects = {'PConv2D': KerasNoNANUtil, 'dice_coef': dice_coef}
     model = load_inpainting_model(model_path, custom_objects)
     predicted_image = model.predict([input_image, input_mask])
     output_image = predicted_image.squeeze()

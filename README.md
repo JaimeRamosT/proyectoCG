@@ -23,7 +23,7 @@ cd proyectoCG
 
 ```sh
 cd API
-docker build -t image_inpainting_model . 
+docker build -t image_inpainting_model .
 docker run -p 8000:8000 image_inpainting_model
 ```
 
