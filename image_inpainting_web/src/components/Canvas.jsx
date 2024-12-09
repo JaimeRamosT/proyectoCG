@@ -146,7 +146,7 @@ const handleSaveMask = () => {
       formData.append("original_image", resizedBlob, "original_image.jpg");
       formData.append("mask", maskBlob, "mask.png");
 
-      const response = await fetch("http://localhost:8000/upload/", {
+      const response = await fetch("https://rdb-image-inpainting-model-1-0.onrender.com/upload/", {
         method: "POST",
         body: formData,
       });
