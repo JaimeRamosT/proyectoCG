@@ -1,44 +1,28 @@
-# Usar una imagen base de Ubuntu
-FROM ubuntu:22.04
+# Usar una imagen base de Python
+FROM python:3.10-slim
 
 # Establecer el directorio de trabajo
 WORKDIR /app
 
-# Instalar dependencias del sistema
+# Instalar dependencias del sistema necesarias para OpenCV y otras librerías
 RUN apt-get update && apt-get install -y \
-    software-properties-common \
-    && add-apt-repository ppa:deadsnakes/ppa \
-    && apt-get update && apt-get install -y \
-    python3.10 \
-    python3.10-venv \
-    python3.10-dev \
-    python3-pip \
-    && apt-get clean
-
-# Eliminar el enlace simbólico existente y crear uno nuevo para python3
-RUN rm /usr/bin/python3 && ln -s /usr/bin/python3.10 /usr/bin/python3
+    libgl1 \
+    libglib2.0-0 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copiar los archivos de requerimientos
 COPY requirements.txt ./
 
-# Instalar las dependencias
-RUN python3 -m pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Instalar FastAPI
-RUN pip install "fastapi[standard]"
+# Instalar las dependencias de Python
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 # Copiar el resto de los archivos de la aplicación
 COPY . .
 
-# Instalar las dependencias del sistema
-RUN apt-get update && apt-get install -y libgl1-mesa-glx
-
-# Instalar OpenCV
-RUN pip install opencv-python-headless
-
-# Exponer el puerto para Jupyter Notebook
+# Exponer el puerto para FastAPI
 EXPOSE 8000
 
-# Comando para ejecutar Jupyter Notebook
-CMD ["fastapi", "run", "main.py"]
+# Comando para ejecutar FastAPI
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
