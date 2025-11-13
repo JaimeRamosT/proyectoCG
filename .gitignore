@@ -1,24 +1,3 @@
-# Logs
-image_inpainting_web/logs
-image_inpainting_web/*.log
-image_inpainting_web/npm-debug.log*
-image_inpainting_web/yarn-debug.log*
-image_inpainting_web/yarn-error.log*
-image_inpainting_web/pnpm-debug.log*
-image_inpainting_web/lerna-debug.log*
-
-image_inpainting_web/node_modules
-image_inpainting_web/dist
-image_inpainting_web/dist-ssr
-image_inpainting_web/*.local
-
-# Editor directories and files
-image_inpainting_web/.vscode/*
-image_inpainting_web/!.vscode/extensions.json
-image_inpainting_web/.idea
-image_inpainting_web/.DS_Store
-image_inpainting_web/*.suo
-image_inpainting_web/*.ntvs*
-image_inpainting_web/*.njsproj
-image_inpainting_web/*.sln
-image_inpainting_web/*.sw?
+proyectoCG/API/venv/
+AOT-GAN-for-Inpainting/experiments/*
+proyectoCG/model_API/venv/
