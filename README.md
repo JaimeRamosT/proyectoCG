@@ -8,9 +8,84 @@
 
 ## Descripción del proyecto
 
-Este proyecto consiste en la aplicación de modelos de aprendizaje automático para la tarea de Image Inpainting, utilizando una CNN que incorpora Residual Dense Blocks, Global Feature Fusion y Partial Convolutions.
+Este proyecto consiste en la aplicación de modelos de aprendizaje automático para la tarea de Image Inpainting. El proyecto incluye dos implementaciones:
+
+1. **AOT-GAN (Actual)**: Modelo de vanguardia para inpainting de alta calidad usando PyTorch
+2. **RDB CNN (Legacy)**: Implementación con Residual Dense Blocks usando TensorFlow/Keras
+
+### Implementación Principal (AOT-GAN)
+
+La implementación actual usa el modelo AOT-GAN (Aggregated Contextual Transformations) con PyTorch, proporcionando resultados de alta calidad en tiempo real.
+
+**Características:**
+- Arquitectura de transformadores agregados
+- Soporte para GPU (CUDA) y CPU
+- API REST con FastAPI
+- Interfaz web interactiva
+
+### Cambios Recientes
+
+**Noviembre 2025 - Limpieza de Dependencias:**
+- ✅ Eliminados archivos obsoletos de TensorFlow del directorio API
+- ✅ Corregidas rutas de modelos para estructura consistente
+- ✅ Actualizado `requirements.txt` para usar solo PyTorch
+- ✅ Agregados scripts de verificación e instalación
+
+Ver `API/CAMBIOS.md` para detalles completos.
 
 ## Instrucciones para ejecución del proyecto
+
+### Opción 1: Instalación Rápida (Recomendada)
+
+#### A. Instalar dependencias de la API
+
+**Windows (PowerShell):**
+```sh
+cd API
+.\install_dependencies.ps1
+```
+
+**Linux/Mac:**
+```sh
+cd API
+bash install_dependencies.sh
+```
+
+#### B. Descargar el modelo pre-entrenado
+
+1. Descarga el modelo AOT-GAN desde: https://drive.google.com/drive/folders/1Zks5Hyb9WAEpupbTdBqsCafmb25yqsGJ
+2. Coloca la carpeta `AOT-GAN-for-Inpainting` completa dentro de `API/`
+
+#### C. Verificar instalación
+
+```sh
+cd API
+python verify_setup.py
+```
+
+#### D. Ejecutar el servidor
+
+```sh
+cd API
+python start_api.py
+```
+
+#### E. Ejecutar la aplicación web
+
+En otra terminal:
+```sh
+cd image_inpainting_web
+npm install
+npm run dev
+```
+
+#### F. Acceder a la aplicación
+
+Abre tu navegador en http://localhost:5173
+
+---
+
+### Opción 2: Instalación Manual
 
 ### Paso 1: Clonar el repositorio
 
