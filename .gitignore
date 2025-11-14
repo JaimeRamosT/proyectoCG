@@ -1,3 +1,4 @@
-proyectoCG/API/venv/
+API/venv/
 AOT-GAN-for-Inpainting/experiments/*
-proyectoCG/model_API/venv/
+model_API/venv/
+*.pyc

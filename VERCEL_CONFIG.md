@@ -28,7 +28,7 @@ VITE_API_URL=https://tu-api-desplegada.com
 ### 2. Commit y Push
 
 ```bash
-cd proyectoCG/image_inpainting_web
+cd image_inpainting_web
 git add .
 git commit -m "Configure for Vercel deployment"
 git push origin main
@@ -40,7 +40,7 @@ git push origin main
 1. Ir a https://vercel.com/new
 2. Importar tu repositorio de GitHub
 3. Configurar:
-   - **Root Directory:** `proyectoCG/image_inpainting_web`
+   - **Root Directory:** `image_inpainting_web`
    - **Framework:** Vite
    - **Build Command:** `npm run build`
    - **Output Directory:** `dist`
@@ -176,6 +176,8 @@ Access blocked by CORS policy
 
 ```
 proyectoCG/
+├── API/
+│   └── AOT-GAN-for-Inpainting/  # Modelo pre-entrenado
 └── image_inpainting_web/
     ├── .env.example              # 🆕 Ejemplo de variables
     ├── .env.production           # 🆕 Variables de producción

@@ -94,7 +94,7 @@ git clone https://github.com/JaimeRamosT/proyectoCG.git
 cd proyectoCG
 ```
 
-### Paso 2: Construir y ejecutar el contenedor Docker
+### 2. Construir y ejecutar el contenedor Docker
 
 ```sh
 cd API

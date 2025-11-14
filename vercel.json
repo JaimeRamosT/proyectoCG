@@ -1,0 +1,19 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "builds": [
+    {
+      "src": "image_inpainting_web/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "image_inpainting_web/dist"
+      }
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/image_inpainting_web/dist/$1"
+    }
+  ]
+}
