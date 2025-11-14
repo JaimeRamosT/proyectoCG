@@ -2,3 +2,13 @@ API/venv/
 AOT-GAN-for-Inpainting/experiments/*
 model_API/venv/
 *.pyc
+
+# Excluir archivos de modelo grandes (>50MB)
+# Estos archivos se subirán directamente a Vercel
+API/setup/experiments/**/*.pt
+api/setup/experiments/**/*.pt
+*.pt
+
+# Archivos de modelo alternativos
+API/setup/experiments/
+api/setup/experiments/

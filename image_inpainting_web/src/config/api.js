@@ -1,12 +1,13 @@
 // API Configuration
 const API_CONFIG = {
-  // Development API (local)
+  // Development API (local AOT-GAN)
   development: {
     baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000',
   },
-  // Production API (from environment variable or fallback)
+  // Production API (Vercel Serverless - mismo dominio)
+  // La API de AOT-GAN se despliega en el mismo proyecto de Vercel en /api
   production: {
-    baseURL: import.meta.env.VITE_API_URL || 'https://rdb-image-inpainting-model-1-0.onrender.com',
+    baseURL: import.meta.env.VITE_API_URL || '', // Mismo dominio, ruta /api
   }
 };
 
@@ -14,7 +15,7 @@ const API_CONFIG = {
 const ENV = import.meta.env.MODE || 'development';
 
 console.log('🌐 Environment:', ENV);
-console.log('🔗 API URL:', API_CONFIG[ENV]?.baseURL);
+console.log('🔗 API URL:', API_CONFIG[ENV]?.baseURL || 'Same domain (/api)');
 
 // Export the current configuration
 export const API_BASE_URL = API_CONFIG[ENV]?.baseURL || API_CONFIG.development.baseURL;
@@ -22,6 +23,6 @@ export const API_BASE_URL = API_CONFIG[ENV]?.baseURL || API_CONFIG.development.b
 export default {
   baseURL: API_BASE_URL,
   endpoints: {
-    upload: '/upload/',
+    upload: '/api/upload', // Ruta actualizada para Vercel
   }
 };

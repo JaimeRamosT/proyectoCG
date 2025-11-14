@@ -1,0 +1,34 @@
+# Archivos de desarrollo
+node_modules
+venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+.env
+.env.*
+!.env.production
+
+# Archivos de sistema
+.DS_Store
+.git
+.gitignore
+*.log
+
+# Carpetas innecesarias para el deployment
+test_results
+RDB Image Inpainting
+model_API
+proyectoCG/proyectoCG
+
+# Archivos grandes innecesarios
+*.h5
+api/image_inpainting_model.h5
+api/resolution_enhancer_model.h5
+API/image_inpainting_model.h5
+API/resolution_enhancer_model.h5
+
+# Mantener el modelo de AOT-GAN (necesario)
+!api/setup/experiments/CELEBA-HQ/G0000000.pt
+!API/setup/experiments/CELEBA-HQ/G0000000.pt
