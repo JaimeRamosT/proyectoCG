@@ -1,36 +1,17 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "version": 2,
-  "builds": [
-    {
-      "src": "image_inpainting_web/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "image_inpainting_web/dist"
-      }
-    },
-    {
-      "src": "api/index.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "100mb"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/index.py"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/image_inpainting_web/dist/$1"
-    }
-  ],
+  "buildCommand": "cd image_inpainting_web && npm install && npm run build",
+  "outputDirectory": "image_inpainting_web/dist",
   "functions": {
     "api/index.py": {
       "memory": 3008,
       "maxDuration": 60
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/index.py"
+    }
+  ]
 }
