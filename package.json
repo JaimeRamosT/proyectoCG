@@ -1,0 +1,9 @@
+{
+  "name": "image-inpainting-aot-gan",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd image_inpainting_web && npm install && npm run build",
+    "dev": "cd image_inpainting_web && npm run dev"
+  }
+}
