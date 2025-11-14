@@ -4,11 +4,19 @@ model_API/venv/
 *.pyc
 
 # Excluir archivos de modelo grandes (>50MB)
-# Estos archivos se subirán directamente a Vercel
+# EXCEPTO el modelo G0000000.pt necesario para Vercel
 API/setup/experiments/**/*.pt
+!API/setup/experiments/CELEBA-HQ/G0000000.pt
 api/setup/experiments/**/*.pt
-*.pt
+!api/setup/experiments/CELEBA-HQ/G0000000.pt
 
-# Archivos de modelo alternativos
+# Excluir otros modelos pesados
+API/setup/experiments/CELEBA-HQ/O0000000.pt
+API/setup/experiments/CELEBA-HQ/D0000000.pt
+*.h5
+
+# Excluir carpetas de experimentos excepto CELEBA-HQ con G0000000.pt
 API/setup/experiments/
+!API/setup/experiments/CELEBA-HQ/
 api/setup/experiments/
+!api/setup/experiments/CELEBA-HQ/
