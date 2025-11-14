@@ -34,8 +34,11 @@ def get_inpainter():
     global inpainter
     if inpainter is None:
         try:
-            # Ruta al modelo (debe estar en el repositorio)
-            model_path = api_dir / "setup" / "experiments" / "CELEBA-HQ" / "G0000000.pt"
+            # Ruta al modelo - usar API (mayúscula) porque está en GitHub
+            # En Windows api/ y API/ son la misma carpeta (case-insensitive)
+            # En Linux/Vercel necesitamos la ruta correcta del repo
+            project_root = api_dir.parent if api_dir.name == "api" else api_dir
+            model_path = project_root / "API" / "setup" / "experiments" / "CELEBA-HQ" / "G0000000.pt"
             
             if not model_path.exists():
                 raise FileNotFoundError(f"Model not found at {model_path}")
