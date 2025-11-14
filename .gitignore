@@ -3,20 +3,16 @@ AOT-GAN-for-Inpainting/experiments/*
 model_API/venv/
 *.pyc
 
-# Excluir archivos de modelo grandes (>50MB)
-# EXCEPTO el modelo G0000000.pt necesario para Vercel
+# Excluir archivos de modelo grandes
+# EXCEPTO G0000000.pt que es necesario para Vercel (58MB)
 API/setup/experiments/**/*.pt
 !API/setup/experiments/CELEBA-HQ/G0000000.pt
 api/setup/experiments/**/*.pt
 !api/setup/experiments/CELEBA-HQ/G0000000.pt
 
-# Excluir otros modelos pesados
+# Excluir modelos muy grandes (>100MB)
 API/setup/experiments/CELEBA-HQ/O0000000.pt
 API/setup/experiments/CELEBA-HQ/D0000000.pt
+api/setup/experiments/CELEBA-HQ/O0000000.pt
+api/setup/experiments/CELEBA-HQ/D0000000.pt
 *.h5
-
-# Excluir carpetas de experimentos excepto CELEBA-HQ con G0000000.pt
-API/setup/experiments/
-!API/setup/experiments/CELEBA-HQ/
-api/setup/experiments/
-!api/setup/experiments/CELEBA-HQ/
