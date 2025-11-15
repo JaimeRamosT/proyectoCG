@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Startup script for AOT-GAN Image Inpainting API
+Startup script for Image Inpainting API
 """
 import sys
 from pathlib import Path

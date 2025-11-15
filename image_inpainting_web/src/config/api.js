@@ -1,11 +1,11 @@
 // API Configuration
 const API_CONFIG = {
-  // Development API (local AOT-GAN)
+  // Development API
   development: {
     baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000',
   },
   // Production API (Vercel Serverless - mismo dominio)
-  // La API de AOT-GAN se despliega en el mismo proyecto de Vercel en /api
+  // La API se despliega en el mismo proyecto de Vercel en /api
   production: {
     baseURL: import.meta.env.VITE_API_URL || '', // Mismo dominio, ruta /api
   }

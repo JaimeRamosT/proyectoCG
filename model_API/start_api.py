@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Startup script for AOT-GAN Image Inpainting API
+Startup script for Image Inpainting API
 """
 import sys
 from pathlib import Path
@@ -48,7 +48,7 @@ def check_dependencies():
 def main():
     """Main startup function"""
     print("=" * 60)
-    print("AOT-GAN Image Inpainting API - Startup Check")
+    print("Image Inpainting API - Startup Check")
     print("=" * 60)
     
     # Check dependencies

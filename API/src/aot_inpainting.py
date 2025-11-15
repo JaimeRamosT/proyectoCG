@@ -10,12 +10,12 @@ from .model.aotgan import InpaintGenerator
 
 class AOTGANInpainter:
     """
-    AOT-GAN based image inpainting processor
+    Image inpainting processor
     """
     
     def __init__(self, model_path: str, device: str = "cuda", image_size: int = 512):
         """
-        Initialize the AOT-GAN inpainting model
+        Initialize inpainting model
         
         Args:
             model_path: Path to the pre-trained model (.pt or .pth file)
@@ -61,7 +61,7 @@ class AOTGANInpainter:
         self.model.eval()
         
         print(f"Model loaded successfully on {self.device}")
-        print(f"AOT-GAN model loaded from {model_path} on {self.device}")
+        print(f"Model loaded from {model_path} on {self.device}")
     
     def preprocess_image(self, image: np.ndarray) -> torch.Tensor:
         """
@@ -108,7 +108,7 @@ class AOTGANInpainter:
             mask = cv2.cvtColor(mask, cv2.COLOR_BGR2GRAY)
         
         # INVERT mask: Frontend sends black (0) where to inpaint,
-        # but AOT-GAN expects white (1) where to inpaint
+        # but model expects white (1) where to inpaint
         mask = 255 - mask.astype(np.uint8)
         
         # Convert to PIL Image
@@ -164,7 +164,7 @@ class AOTGANInpainter:
         print(f"[DEBUG] Image tensor shape: {image_tensor.shape}, range: [{image_tensor.min():.2f}, {image_tensor.max():.2f}]")
         print(f"[DEBUG] Mask tensor shape: {mask_tensor.shape}, range: [{mask_tensor.min():.2f}, {mask_tensor.max():.2f}]")
         
-        # Create masked input following AOT-GAN's original implementation
+        # Create masked input
         # Areas to inpaint are set to 1 (white), areas to keep show the original image
         masked_image = image_tensor * (1 - mask_tensor) + mask_tensor
         

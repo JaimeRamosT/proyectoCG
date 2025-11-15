@@ -1,7 +1,5 @@
 # 🎨 Image Inpainting Web - Frontend
 
-Aplicación web interactiva para realizar inpainting de imágenes usando el modelo AOT-GAN.
-
 ## 🚀 Tecnologías
 
 - **React 18** - Framework UI
@@ -97,7 +95,6 @@ image_inpainting_web/
 - ✅ Ajuste de tamaño de pincel
 - ✅ Deshacer/rehacer
 - ✅ Limpiar máscara
-- ✅ Procesamiento con AOT-GAN
 - ✅ Descarga de resultados
 - ✅ Responsive design
 - ✅ Dark mode compatible

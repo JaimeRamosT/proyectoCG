@@ -84,7 +84,7 @@ async def upload_files(
     original_image: UploadFile = File(...),
     mask: UploadFile = File(...)
 ):
-    """Perform image inpainting using AOT-GAN"""
+    """Perform image inpainting"""
     try:
         model = get_inpainter()
         

@@ -15,7 +15,7 @@ from src.aot_inpainting import create_inpainter
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-app = FastAPI(title="AOT-GAN Image Inpainting API")
+app = FastAPI(title="Image Inpainting API")
 
 # Configure CORS
 app.add_middleware(
@@ -88,7 +88,7 @@ async def process_inpainting(
     mask: UploadFile = File(...)
 ):
     """
-    Perform image inpainting using AOT-GAN
+    Perform image inpainting
     
     Args:
         original_image: Original image file
@@ -126,7 +126,7 @@ async def process_inpainting(
         logger.info(f"Image dtype: {img.dtype}, range: [{img.min()}, {img.max()}]")
         logger.info(f"Mask dtype: {mask_img.dtype}, range: [{mask_img.min()}, {mask_img.max()}]")
         
-        # Perform inpainting using AOT-GAN (expects BGR, returns RGB)
+        # Perform inpainting (expects BGR, returns RGB)
         output_image = inpainter.inpaint(img, mask_img)
         
         # Convert RGB to BGR for encoding

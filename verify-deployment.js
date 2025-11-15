@@ -42,7 +42,7 @@ checks.push({
   status: fs.existsSync(requirementsPath) 
 });
 
-// 4. Verificar modelo AOT-GAN
+// 4. Verificar modelo
 const modelPath = path.join(__dirname, 'api', 'setup', 'experiments', 'CELEBA-HQ', 'G0000000.pt');
 if (fs.existsSync(modelPath)) {
   const stats = fs.statSync(modelPath);

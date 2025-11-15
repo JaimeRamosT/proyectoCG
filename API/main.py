@@ -119,7 +119,7 @@ async def upload_files(
         logger.info(f"Image dtype: {img.dtype}, range: [{img.min()}, {img.max()}]")
         logger.info(f"Mask dtype: {mask_img.dtype}, range: [{mask_img.min()}, {mask_img.max()}]")
         
-        # Perform inpainting using AOT-GAN (expects BGR, returns RGB)
+        # Perform inpainting (expects BGR, returns RGB)
         output_image = inpainter.inpaint(img, mask_img)
         
         # Convert RGB to BGR for encoding
