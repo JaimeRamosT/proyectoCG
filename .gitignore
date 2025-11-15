@@ -7,3 +7,6 @@ model_API/venv/
 __pycache__/
 
 node_modules/
+
+# Archivos temporales
+test_results/
