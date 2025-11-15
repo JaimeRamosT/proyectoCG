@@ -26,9 +26,6 @@ proyectoCG/proyectoCG
 *.h5
 api/image_inpainting_model.h5
 api/resolution_enhancer_model.h5
-API/image_inpainting_model.h5
-API/resolution_enhancer_model.h5
 
 # Mantener el modelo
 !api/setup/experiments/CELEBA-HQ/G0000000.pt
-!API/setup/experiments/CELEBA-HQ/G0000000.pt

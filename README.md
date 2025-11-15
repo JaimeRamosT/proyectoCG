@@ -31,7 +31,7 @@ La implementación actual usa el modelo AOT-GAN (Aggregated Contextual Transform
 - ✅ Actualizado `requirements.txt` para usar solo PyTorch
 - ✅ Agregados scripts de verificación e instalación
 
-Ver `API/CAMBIOS.md` para detalles completos.
+Ver `api/CAMBIOS.md` para detalles completos.
 
 ## Instrucciones para ejecución del proyecto
 
@@ -41,32 +41,32 @@ Ver `API/CAMBIOS.md` para detalles completos.
 
 **Windows (PowerShell):**
 ```sh
-cd API
+cd api
 .\install_dependencies.ps1
 ```
 
 **Linux/Mac:**
 ```sh
-cd API
+cd api
 bash install_dependencies.sh
 ```
 
 #### B. Descargar el modelo pre-entrenado
 
 1. Descarga el modelo AOT-GAN desde: https://drive.google.com/drive/folders/1Zks5Hyb9WAEpupbTdBqsCafmb25yqsGJ
-2. Coloca la carpeta `AOT-GAN-for-Inpainting` completa dentro de `API/`
+2. Coloca la carpeta `AOT-GAN-for-Inpainting` completa dentro de `api/`
 
 #### C. Verificar instalación
 
 ```sh
-cd API
+cd api
 python verify_setup.py
 ```
 
 #### D. Ejecutar el servidor
 
 ```sh
-cd API
+cd api
 python start_api.py
 ```
 
@@ -97,7 +97,7 @@ cd proyectoCG
 ### 2. Construir y ejecutar el contenedor Docker
 
 ```sh
-cd API
+cd api
 docker build -t image_inpainting_model .
 docker run -p 8000:8000 image_inpainting_model
 ```

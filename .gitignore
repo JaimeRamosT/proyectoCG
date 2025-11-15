@@ -1,7 +1,7 @@
 # Entornos virtuales
 .venv/
 venv/
-API/venv/
+api/venv/
 model_API/venv/
 *.pyc
 __pycache__/
