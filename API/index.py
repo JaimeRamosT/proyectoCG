@@ -128,5 +128,7 @@ async def upload_files(
         }, status_code=500)
 
 
-# Handler para Vercel
-handler = app
+# Handler para Vercel - debe ser una función ASGI
+from mangum import Mangum
+
+handler = Mangum(app, lifespan="off")
