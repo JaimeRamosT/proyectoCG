@@ -1,24 +1,27 @@
+// Detectar si estamos en producción (deployment) o desarrollo (local)
+const isProduction = import.meta.env.PROD || window.location.hostname !== 'localhost';
+
 // API Configuration
 const API_CONFIG = {
-  // Development API
+  // Development API (localhost)
   development: {
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000',
+    baseURL: 'http://localhost:8000',
   },
   // Production API (Vercel Serverless - mismo dominio)
-  // La API se despliega en el mismo proyecto de Vercel en /api
   production: {
-    baseURL: import.meta.env.VITE_API_URL || '', // Mismo dominio, ruta /api
+    baseURL: '', // Mismo dominio, usa rutas relativas
   }
 };
 
-// Automatically detect environment
-const ENV = import.meta.env.MODE || 'development';
+// Seleccionar configuración basada en el entorno
+const ENV = isProduction ? 'production' : 'development';
 
 console.log('🌐 Environment:', ENV);
-console.log('🔗 API URL:', API_CONFIG[ENV]?.baseURL || 'Same domain (/api)');
+console.log('🔗 Hostname:', window.location.hostname);
+console.log('🔗 API Base URL:', API_CONFIG[ENV].baseURL || 'Same domain (relative)');
 
 // Export the current configuration
-export const API_BASE_URL = API_CONFIG[ENV]?.baseURL || API_CONFIG.development.baseURL;
+export const API_BASE_URL = API_CONFIG[ENV].baseURL;
 
 export default {
   baseURL: API_BASE_URL,
