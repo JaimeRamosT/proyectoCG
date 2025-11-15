@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "build": "cd image_inpainting_web && npm install && npm run build",
-    "dev": "cd image_inpainting_web && npm run dev",
-    "install": "cd image_inpainting_web && npm install"
+    "dev": "cd image_inpainting_web && npm run dev"
   },
   "workspaces": [
     "image_inpainting_web"

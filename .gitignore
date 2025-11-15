@@ -1,15 +1,9 @@
+# Entornos virtuales
+.venv/
+venv/
 API/venv/
-AOT-GAN-for-Inpainting/experiments/*
 model_API/venv/
 *.pyc
+__pycache__/
 
-# Excluir TODOS los modelos para reducir tamaño del repo y tiempo de build
-# El modelo se descarga en runtime desde GitHub Releases o URL externa
-API/setup/experiments/**/*.pt
-api/setup/experiments/**/*.pt
-*.pt
-*.h5
-
-# Carpetas grandes
-API/setup/experiments/
-api/setup/experiments/
+node_modules/

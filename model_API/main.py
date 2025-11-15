@@ -37,7 +37,11 @@ async def startup_event():
     
     try:
         # Determine model path - adjust relative path as needed
-        model_path = Path(__file__).parent.parent / "AOT-GAN-for-Inpainting" / "experiments" / "CELEBA-HQ" / "G0000000.pt"
+        model_path = Path(__file__).parent.parent / "API" / "setup" / "experiments" / "CELEBA-HQ" / "G0000000.pt"
+        
+        # Fallback to old path if new doesn't work
+        if not model_path.exists():
+            model_path = Path(__file__).parent.parent / "AOT-GAN-for-Inpainting" / "experiments" / "CELEBA-HQ" / "G0000000.pt"
         
         # Fallback to absolute path if relative doesn't work
         if not model_path.exists():
@@ -69,8 +73,17 @@ async def root():
     }
 
 
-@app.post("/upload/")
-async def upload_files(
+@app.get("/api")
+async def api_root():
+    """API health check endpoint"""
+    return {
+        "status": "running",
+        "model": "AOT-GAN",
+        "device": str(inpainter.device) if inpainter else "not loaded"
+    }
+
+
+async def process_inpainting(
     original_image: UploadFile = File(...),
     mask: UploadFile = File(...)
 ):
@@ -138,6 +151,24 @@ async def upload_files(
             "status": "error",
             "message": str(e)
         }, status_code=500)
+
+
+@app.post("/upload/")
+async def upload_files(
+    original_image: UploadFile = File(...),
+    mask: UploadFile = File(...)
+):
+    """Legacy endpoint for backward compatibility"""
+    return await process_inpainting(original_image, mask)
+
+
+@app.post("/api/upload")
+async def api_upload_files(
+    original_image: UploadFile = File(...),
+    mask: UploadFile = File(...)
+):
+    """Main API endpoint for image inpainting"""
+    return await process_inpainting(original_image, mask)
 
 
 if __name__ == "__main__":
