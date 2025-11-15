@@ -36,12 +36,8 @@ async def startup_event():
     global inpainter
     
     try:
-        # Determine model path - adjust relative path as needed
-        model_path = Path(__file__).parent.parent / "AOT-GAN-for-Inpainting" / "experiments" / "CELEBA-HQ" / "G0000000.pt"
-        
-        # Fallback to absolute path if relative doesn't work
-        if not model_path.exists():
-            model_path = Path(r"c:\Users\HP\Desktop\wea\AOT-GAN-for-Inpainting\experiments\CELEBA-HQ\G0000000.pt")
+        # Ruta correcta del modelo en API/setup
+        model_path = Path(__file__).parent / "setup" / "experiments" / "CELEBA-HQ" / "G0000000.pt"
         
         if not model_path.exists():
             raise FileNotFoundError(f"Model not found at {model_path}")
@@ -69,7 +65,17 @@ async def root():
     }
 
 
-@app.post("/upload/")
+@app.get("/api")
+async def api_health():
+    """API health check endpoint (matches Vercel structure)"""
+    return {
+        "status": "running",
+        "model": "AOT-GAN",
+        "device": str(inpainter.device) if inpainter else "not loaded"
+    }
+
+
+@app.post("/api/upload")
 async def upload_files(
     original_image: UploadFile = File(...),
     mask: UploadFile = File(...)

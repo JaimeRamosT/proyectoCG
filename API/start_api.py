@@ -8,9 +8,7 @@ from pathlib import Path
 def check_model_exists():
     """Check if the pre-trained model exists"""
     possible_paths = [
-        Path(__file__).parent.parent / "AOT-GAN-for-Inpainting" / "experiments" / "CELEBA-HQ" / "G0000000.pt",
-        Path(r"c:\Users\HP\Desktop\wea\AOT-GAN-for-Inpainting\experiments\CELEBA-HQ\G0000000.pt"),
-        Path("models/G0000000.pt"),
+        Path(__file__).parent / "setup" / "experiments" / "CELEBA-HQ" / "G0000000.pt",
     ]
     
     for path in possible_paths:
