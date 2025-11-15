@@ -6,19 +6,9 @@
   "outputDirectory": "image_inpainting_web/dist",
   "framework": null,
   "functions": {
-    "api/index.py": {
+    "api/*.py": {
       "memory": 3008,
       "maxDuration": 60
     }
-  },
-  "routes": [
-    {
-      "src": "/api",
-      "dest": "/api/index.py"
-    },
-    {
-      "src": "/api/upload",
-      "dest": "/api/index.py"
-    }
-  ]
+  }
 }

@@ -5,10 +5,9 @@ import cv2
 import base64
 import sys
 from pathlib import Path
-from io import BytesIO
 import cgi
 
-# Agregar el directorio API al path para importar módulos
+# Agregar el directorio api al path para importar módulos
 api_dir = Path(__file__).parent
 sys.path.insert(0, str(api_dir))
 
@@ -22,8 +21,8 @@ def get_inpainter():
     global inpainter
     if inpainter is None:
         try:
-            project_root = api_dir.parent if api_dir.name == "api" else api_dir
-            model_path = project_root / "api" / "setup" / "experiments" / "CELEBA-HQ" / "G0000000.pt"
+            # La ruta del modelo desde api/upload.py
+            model_path = api_dir / "setup" / "experiments" / "CELEBA-HQ" / "G0000000.pt"
             
             if not model_path.exists():
                 raise FileNotFoundError(f"Model not found at {model_path}")
@@ -43,7 +42,7 @@ class handler(BaseHTTPRequestHandler):
         self.send_response(status)
         self.send_header('Content-type', content_type)
         self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
         self.send_header('Access-Control-Allow-Headers', 'Content-Type')
         self.end_headers()
     
@@ -51,29 +50,11 @@ class handler(BaseHTTPRequestHandler):
         """Handle CORS preflight requests"""
         self._set_headers(200)
         self.wfile.write(b'')
-        
-    def do_GET(self):
-        try:
-            model = get_inpainter()
-            self._set_headers(200)
-            response = {
-                "status": "running",
-                "model": "AOT-GAN",
-                "platform": "Vercel Serverless",
-                "device": "cpu"
-            }
-            self.wfile.write(json.dumps(response).encode())
-        except Exception as e:
-            self._set_headers(500)
-            self.wfile.write(json.dumps({
-                "status": "error",
-                "message": str(e)
-            }).encode())
     
     def do_POST(self):
         try:
             # Parse multipart form data
-            content_type = self.headers['Content-Type']
+            content_type = self.headers.get('Content-Type', '')
             if 'multipart/form-data' not in content_type:
                 self._set_headers(400)
                 self.wfile.write(json.dumps({
@@ -81,9 +62,6 @@ class handler(BaseHTTPRequestHandler):
                     "message": "Content-Type must be multipart/form-data"
                 }).encode())
                 return
-            
-            # Get content length
-            content_length = int(self.headers['Content-Length'])
             
             # Parse form data
             form_data = cgi.FieldStorage(
@@ -96,6 +74,14 @@ class handler(BaseHTTPRequestHandler):
             )
             
             # Get files
+            if 'original_image' not in form_data or 'mask' not in form_data:
+                self._set_headers(400)
+                self.wfile.write(json.dumps({
+                    "status": "error",
+                    "message": "Missing required files: original_image and mask"
+                }).encode())
+                return
+            
             original_image = form_data['original_image'].file.read()
             mask = form_data['mask'].file.read()
             
@@ -149,3 +135,11 @@ class handler(BaseHTTPRequestHandler):
                 "status": "error",
                 "message": str(e)
             }).encode())
+    
+    def do_GET(self):
+        """Return 405 for GET requests - only POST is allowed"""
+        self._set_headers(405)
+        self.wfile.write(json.dumps({
+            "status": "error",
+            "message": "Method Not Allowed. Use POST to upload images."
+        }).encode())
