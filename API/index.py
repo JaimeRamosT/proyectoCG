@@ -40,8 +40,17 @@ def get_inpainter():
             project_root = api_dir.parent if api_dir.name == "api" else api_dir
             model_path = project_root / "API" / "setup" / "experiments" / "CELEBA-HQ" / "G0000000.pt"
             
+            # Si no existe, descargar desde URL externa
             if not model_path.exists():
-                raise FileNotFoundError(f"Model not found at {model_path}")
+                print(f"Model not found locally, downloading...")
+                model_path.parent.mkdir(parents=True, exist_ok=True)
+                
+                # URL del modelo (puedes usar GitHub Releases, Hugging Face, o Google Drive)
+                model_url = "https://github.com/JaimeRamosT/proyectoCG---Image-inpainting/raw/main/API/setup/experiments/CELEBA-HQ/G0000000.pt"
+                
+                import urllib.request
+                urllib.request.urlretrieve(model_url, model_path)
+                print(f"Model downloaded to {model_path}")
             
             device = "cpu"  # Vercel Serverless no tiene GPU
             inpainter = AOTGANInpainter(model_path=str(model_path), device=device, image_size=512)
