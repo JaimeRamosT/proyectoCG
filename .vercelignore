@@ -16,16 +16,11 @@ __pycache__
 .gitignore
 *.log
 
+# Backend API (se despliega en Railway)
+api/
+model_API/
+
 # Carpetas innecesarias para el deployment
 test_results
 RDB Image Inpainting
-model_API
 proyectoCG/proyectoCG
-
-# Archivos grandes innecesarios
-*.h5
-api/image_inpainting_model.h5
-api/resolution_enhancer_model.h5
-
-# Mantener el modelo
-!api/setup/experiments/CELEBA-HQ/G0000000.pt
