@@ -36,7 +36,7 @@ async def startup_event():
     global inpainter
     
     try:
-        # Ruta correcta del modelo en api/setup
+        # Ruta correcta del modelo en api_/setup
         model_path = Path(__file__).parent / "setup" / "experiments" / "CELEBA-HQ" / "G0000000.pt"
         
         if not model_path.exists():

@@ -27,10 +27,10 @@
 ### 2. Preparar el proyecto
 
 Los archivos ya están listos:
-- ✅ `api/Dockerfile` - Para construir la imagen
-- ✅ `api/requirements.txt` - Dependencias
-- ✅ `api/main.py` - FastAPI server
-- ✅ `api/railway.json` - Configuración de Railway
+- ✅ `api_/Dockerfile` - Para construir la imagen
+- ✅ `api_/requirements.txt` - Dependencias
+- ✅ `api_/main.py` - FastAPI server
+- ✅ `api_/railway.json` - Configuración de Railway
 
 ### 3. Desplegar desde GitHub
 
@@ -48,7 +48,7 @@ Los archivos ya están listos:
    - Selecciona `proyectoCG` repository
 
 3. **Configurar el servicio**
-   - **Root Directory**: `api`
+   - **Root Directory**: `api_`
    - **Build Command**: (automático con Dockerfile)
    - **Start Command**: (automático desde railway.json)
 
@@ -90,7 +90,7 @@ railway domain
 
 ### 4. Configurar CORS
 
-El archivo `api/main.py` ya tiene CORS configurado:
+El archivo `api_/main.py` ya tiene CORS configurado:
 
 ```python
 app.add_middleware(
@@ -227,7 +227,7 @@ RUN pip install torch torchvision --index-url https://download.pytorch.org/whl/c
 
 **Error:** `Model not found at...`
 
-**Solución:** Asegúrate de que el modelo esté en `api/setup/experiments/CELEBA-HQ/G0000000.pt`
+**Solución:** Asegúrate de que el modelo esté en `api_/setup/experiments/CELEBA-HQ/G0000000.pt`
 
 ---
 
@@ -284,5 +284,5 @@ RUN pip install torch torchvision --index-url https://download.pytorch.org/whl/c
 1. Ve a https://railway.app
 2. "New Project" → "Deploy from GitHub"
 3. Selecciona `proyectoCG`
-4. Root directory: `api`
+4. Root directory: `api_`
 5. Deploy! ✨

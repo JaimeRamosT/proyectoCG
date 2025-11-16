@@ -178,7 +178,7 @@ Si desplegaste desde la CLI y no configuraste las variables:
 Tu API debe permitir requests desde el dominio de Vercel:
 
 ```python
-# En api/main.py
+# En api_/main.py
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[

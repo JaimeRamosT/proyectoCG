@@ -21,7 +21,7 @@ def get_inpainter():
     global inpainter
     if inpainter is None:
         try:
-            # La ruta del modelo desde api/upload.py
+            # La ruta del modelo desde api_/upload.py
             model_path = api_dir / "setup" / "experiments" / "CELEBA-HQ" / "G0000000.pt"
             
             if not model_path.exists():

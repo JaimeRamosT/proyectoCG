@@ -22,8 +22,8 @@ def get_inpainter():
     global inpainter
     if inpainter is None:
         try:
-            project_root = api_dir.parent if api_dir.name == "api" else api_dir
-            model_path = project_root / "api" / "setup" / "experiments" / "CELEBA-HQ" / "G0000000.pt"
+            project_root = api_dir.parent if api_dir.name == "api_" else api_dir
+            model_path = project_root / "api_" / "setup" / "experiments" / "CELEBA-HQ" / "G0000000.pt"
             
             if not model_path.exists():
                 raise FileNotFoundError(f"Model not found at {model_path}")

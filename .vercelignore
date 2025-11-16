@@ -17,7 +17,7 @@ __pycache__
 *.log
 
 # Backend API (se despliega en Railway)
-api/
+api_/
 model_API/
 
 # Carpetas innecesarias para el deployment

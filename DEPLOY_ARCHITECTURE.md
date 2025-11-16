@@ -76,7 +76,7 @@ https://railway.app
 
 # 2. New Project → Deploy from GitHub
 Selecciona: proyectoCG
-Root directory: api
+Root directory: api_
 
 # 3. Espera el build (5-10 min)
 # 4. Copia tu URL: https://xxx.up.railway.app
@@ -107,7 +107,7 @@ git push origin main
 
 ```
 proyectoCG/
-├── api/                          ← Backend (Railway)
+├── api_/                          ← Backend (Railway)
 │   ├── Dockerfile               ← Para Railway
 │   ├── railway.json             ← Config de Railway
 │   ├── main.py                  ← FastAPI server
@@ -186,7 +186,7 @@ proyectoCG/
 
 ```bash
 # Terminal 1: Backend
-cd api
+cd api_
 python main.py
 # Corre en http://localhost:8000
 
@@ -246,7 +246,7 @@ curl https://tu-proyecto.vercel.app/
 
 ### CORS
 ```python
-# En api/main.py
+# En api_/main.py
 allow_origins=[
     "https://tu-proyecto.vercel.app",  # Tu dominio
     "http://localhost:5173"             # Desarrollo
