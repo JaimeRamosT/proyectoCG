@@ -7,9 +7,9 @@ const API_CONFIG = {
   development: {
     baseURL: 'http://localhost:8000',
   },
-  // Production API (Vercel Serverless - mismo dominio)
+  // Production API (Railway)
   production: {
-    baseURL: '', // Mismo dominio, usa rutas relativas
+    baseURL: import.meta.env.VITE_API_URL || 'https://image-inpainting-web-production.up.railway.app/',
   }
 };
 
@@ -18,7 +18,7 @@ const ENV = isProduction ? 'production' : 'development';
 
 console.log('🌐 Environment:', ENV);
 console.log('🔗 Hostname:', window.location.hostname);
-console.log('🔗 API Base URL:', API_CONFIG[ENV].baseURL || 'Same domain (relative)');
+console.log('🔗 API Base URL:', API_CONFIG[ENV].baseURL);
 
 // Export the current configuration
 export const API_BASE_URL = API_CONFIG[ENV].baseURL;
@@ -26,6 +26,6 @@ export const API_BASE_URL = API_CONFIG[ENV].baseURL;
 export default {
   baseURL: API_BASE_URL,
   endpoints: {
-    upload: '/api/upload', // Ruta actualizada para Vercel
+    upload: '/api/upload',
   }
 };
