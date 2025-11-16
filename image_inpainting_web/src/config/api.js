@@ -9,7 +9,7 @@ const API_CONFIG = {
   },
   // Production API (Railway)
   production: {
-    baseURL: import.meta.env.VITE_API_URL || 'https://image-inpainting-web-production.up.railway.app/',
+    baseURL: import.meta.env.VITE_API_URL || 'https://image-inpainting-web-production.up.railway.app',
   }
 };
 
