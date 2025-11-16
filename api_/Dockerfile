@@ -15,8 +15,9 @@ RUN apt-get update && apt-get install -y \
 # Copiar requirements
 COPY requirements.txt .
 
-# Instalar dependencias Python
-RUN pip install --no-cache-dir -r requirements.txt
+# Instalar dependencias Python con PyTorch CPU-only (mucho más ligero)
+RUN pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu && \
+    pip install --no-cache-dir -r requirements.txt
 
 # Copiar código fuente
 COPY . .
