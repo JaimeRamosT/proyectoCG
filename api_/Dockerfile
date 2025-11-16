@@ -20,5 +20,5 @@ COPY . .
 # Exponer puerto
 EXPOSE 8000
 
-# Comando para ejecutar
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Comando para ejecutar (Railway usa $PORT)
+CMD uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}
